@@ -19,7 +19,7 @@ export class UserService {
     return this.http.get(API_URL + 'espectador', { responseType: 'text' });
   }
 
-  getModeratorBoard(): Observable<any> {
+  getProdutorBoard(): Observable<any> {
     return this.http.get(API_URL + 'produtor', { responseType: 'text' });
   }
 
