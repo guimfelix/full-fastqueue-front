@@ -15,25 +15,44 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  isProdutor = false;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
+  onSubmit(isProdutor: boolean): void {
     const { username, email, password } = this.form;
+    if (isProdutor) {
+      this.authService.register(username, email, password).subscribe(
+        data => {
+          console.log(data);
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        err => {
+          this.errorMessage = err.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
+    } else {
+      this.authService.produtorRegister(username, email, password).subscribe(
+        data => {
+          console.log(data);
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        err => {
+          this.errorMessage = err.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
+    }
+    this.isProdutor = false;
+  }
 
-    this.authService.register(username, email, password).subscribe(
-      data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
-      }
-    );
+  produtorAtivado(): void {
+    this.isProdutor = true;
   }
 }

@@ -1,18 +1,15 @@
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">bezKoder</a>
+    <a href="#" class="navbar-brand">FastQueue</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
-      </li>
       <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        <a href="/admin" class="nav-link" routerLink="admin">Visão de Administrador</a>
       </li>
       <li class="nav-item" *ngIf="showProdutorBoard">
-        <a href="/produtor" class="nav-link" routerLink="produtor">Produtor Board</a>
+        <a href="/produtor" class="nav-link" routerLink="produtor">Visão de Produtor</a>
       </li>
       <li class="nav-item">
-        <a href="/espectador" class="nav-link" *ngIf="isLoggedIn" routerLink="espectador">Espectador Board</a>
+        <a href="/espectador" class="nav-link" *ngIf="showEspectadorBoard" routerLink="espectador">Visão de Espectador</a>
       </li>
     </ul>
 
@@ -35,7 +32,36 @@
     </ul>
   </nav>
 
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <ul class="navbar-nav mr-auto " routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home">HOME </a>
+      </li>
+      <li class="nav-item">
+        <a href="/evento-lista" class="nav-link" routerLink="evento-lista">EVENTOS </a>
+      </li>
+      <li class="nav-item">
+        <a href="/evento-espectador" class="nav-link" routerLink="evento-espectador">MEUS EVENTOS </a>
+      </li>
+      <li class="nav-item">
+        <a href="/mapa-eventos" class="nav-link" routerLink="mapa-eventos">MAPA EVENTOS </a>
+      </li>
+      <li class="nav-item">
+        <a href="/calendario" class="nav-link" routerLink="calendario">CALENDARIO </a>
+      </li>  
+      <li class="nav-item">
+        <a href="/configuracoes" class="nav-link" routerLink="configuracoes">MEUS DADOS </a>
+      </li>          
+    </ul>
+  </nav>
+
   <div class="container">
     <router-outlet></router-outlet>
   </div>
+
+  <footer class="py-4 bg-dark mt-auto">
+    <nav class="navbar navbar-expand navbar-dark bg-dark mr-auto">
+      <div class="text-muted">Copyright &copy; FastQueue 2022</div>
+    </nav>
+  </footer>
 </div>

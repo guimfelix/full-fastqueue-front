@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   showAdminBoard = false;
   showProdutorBoard = false;
+  showEspectadorBoard = false;
   username?: string;
 
   eventBusSub?: Subscription;
@@ -26,8 +27,9 @@ export class AppComponent implements OnInit, OnDestroy {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showProdutorBoard = this.roles.includes('ROLE_PRODUTOR');
+      this.showAdminBoard = this.roles.includes('PAPEL_ADMIN');
+      this.showProdutorBoard = this.roles.includes('PAPEL_PRODUTOR');
+      this.showEspectadorBoard = this.roles.includes('PAPEL_ESPECTADOR');
 
       this.username = user.username;
     }
@@ -50,5 +52,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.roles = [];
     this.showAdminBoard = false;
     this.showProdutorBoard = false;
+    this.showEspectadorBoard = false;
   }
 }

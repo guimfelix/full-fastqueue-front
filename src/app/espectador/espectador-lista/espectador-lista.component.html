@@ -1,0 +1,67 @@
+<h1 class="mt-4">Espectadores</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Lista espectadores cadastrados</li>
+</ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+                {{ mensagemSucesso }}  
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                {{ mensagemErro  }}    
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>ID Espectador</th>
+                        <th>Nome </th>
+                        <th>Data Nascimento </th>
+                        <th>Endereco</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let espectador of espectadores">
+                        <td>{{ espectador.id }}</td>
+                        <td>{{ espectador.nome }}</td>
+                        <td>{{ espectador.dataNascimento }}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="preparaEndereco(espectador)" 
+                                    data-toggle="modal" data-target="#modalEndereco">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalEndereco" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Informações do Endereço</h4>
+                </div>
+
+                <div class="modal-body" *ngIf="enderecoSelecionado">
+                     {{ enderecoSelecionado }}
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

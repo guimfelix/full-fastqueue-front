@@ -1,14 +1,10 @@
 <div class="col-md-12">
     <div class="card card-container">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
+      {{ !isProdutor ? 'Cadastro de Espectador' : 'Cadastro de Produtor de Evento' }}
       <form
         *ngIf="!isSuccessful"
         name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
+        (ngSubmit)="f.form.valid && onSubmit(!isProdutor)"
         #f="ngForm"
         novalidate
       >
@@ -25,12 +21,12 @@
             #username="ngModel"
           />
           <div class="alert-danger" *ngIf="username.errors && f.submitted">
-            <div *ngIf="username.errors.required">Username is required</div>
+            <div *ngIf="username.errors.required">Username é obrigatório</div>
             <div *ngIf="username.errors.minlength">
-              Username must be at least 3 characters
+              Username deve ter no mínimo 2 caracteres
             </div>
             <div *ngIf="username.errors.maxlength">
-              Username must be at most 20 characters
+              Username deve ter no máximo 20 caracteres
             </div>
           </div>
         </div>
@@ -46,9 +42,9 @@
             #email="ngModel"
           />
           <div class="alert-danger" *ngIf="email.errors && f.submitted">
-            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.required">Email é obrigatório</div>
             <div *ngIf="email.errors.email">
-              Email must be a valid email address
+              Email deve ter formatação válida
             </div>
           </div>
         </div>
@@ -64,23 +60,28 @@
             #password="ngModel"
           />
           <div class="alert-danger" *ngIf="password.errors && f.submitted">
-            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.required">Password é obrigatória</div>
             <div *ngIf="password.errors.minlength">
-              Password must be at least 6 characters
+              Password deve ter no mínimo 6 caracteres
             </div>
           </div>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block">Sign Up</button>
+          <button class="btn btn-primary btn-block">Cadastrar</button>
         </div>
   
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-          Signup failed!<br />{{ errorMessage }}
+          Erro de Signup (registro)!<br />{{ errorMessage }}
         </div>
       </form>
   
       <div class="alert alert-success" *ngIf="isSuccessful">
-        Your registration is successful!
+        Registrado com sucesso!
       </div>
     </div>
-  </div>
+
+    <div class="card card-container" *ngIf="!isProdutor &&!isSuccessful" (click)="produtorAtivado()">
+      Gostaria de cadastrar um evento? 
+      <button class="btn btn-info btn-block" >Clique aqui!</button>
+    </div>
+</div>

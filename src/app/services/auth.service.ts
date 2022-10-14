@@ -30,6 +30,16 @@ export class AuthService {
     }, httpOptions);
   }
 
+  produtorRegister(username: string, email: string, password: string): Observable<any> {
+    const role = ["produtor", "espectador"];
+    return this.http.post(AUTH_API + 'signup', {
+      username,
+      email,
+      password,
+      role
+    }, httpOptions);
+  }
+
   refreshToken(token: string) {
     return this.http.post(AUTH_API + 'refreshtoken', {
       refreshToken: token

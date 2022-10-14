@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
+import { GoogleLoginProvider, SocialAuthService } from "angularx-social-login";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +18,16 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  isCadastrado = true;
+  idCliente: number;
+  
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private authServiceSocial: SocialAuthService,
+  ) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -38,7 +48,19 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+        this.isCadastrado = this.tokenStorage.getUser().isCadastrado;
+        if (!this.isCadastrado && this.roles.length==2) {
+          this.router.navigate(['produtor-form']);
+        } else if (this.isCadastrado && this.roles.length==2) {
+          this.router.navigate(['home']);
+        } else if (this.roles.includes('PAPEL_ADMIN', 0)) {
+          this.router.navigate(['admin']);
+        } else if (!this.isCadastrado && this.roles.length==1) {
+          this.router.navigate(['espectador-form']);
+        } else {
+          this.router.navigate(['home']);
+        }
+        
       },
       err => {
         this.errorMessage = err.error.message;
@@ -49,5 +71,13 @@ export class LoginComponent implements OnInit {
 
   reloadPage(): void {
     window.location.reload();
+  }
+
+  signInWithGoogle(): void {
+    this.authServiceSocial.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authServiceSocial.signOut();
   }
 }
