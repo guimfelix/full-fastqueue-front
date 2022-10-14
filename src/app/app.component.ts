@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TokenStorageService } from './services/token-storage.service';
 import { EventBusService } from './shared/event-bus.service';
@@ -8,7 +8,7 @@ import { EventBusService } from './shared/event-bus.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, OnChanges {
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
@@ -37,6 +37,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.eventBusSub = this.eventBusService.on('logout', () => {
       this.logout();
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
   }
 
   ngOnDestroy(): void {

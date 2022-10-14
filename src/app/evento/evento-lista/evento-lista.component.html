@@ -63,9 +63,14 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-success" (click)="vinculaEvento(evento.id)">
-                                V
-                            </button>
+                            <div class="row">
+                                <button class="btn btn-success mr-1" (click)="vinculaEvento(evento.id)">
+                                    V
+                                </button>
+                                <button class="btn btn-danger" (click)="eventoForm()" *ngIf="!isEspectador">
+                                    edit
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

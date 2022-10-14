@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Endereco } from 'src/app/endereco';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { EventoService } from '../../services/evento.service';
 import { Evento } from '../evento';
 
@@ -12,11 +13,14 @@ import { Evento } from '../evento';
 export class EventoListaComponent implements OnInit {
 
   eventos: Evento[] = [];
+  roles: string[] = [];
   enderecoSelecionado = false;
   mensagemSucesso: string;
   mensagemErro: string;
+  isEspectador = true;
 
   constructor(
+      private dadosToken: TokenStorageService,
       private service: EventoService, 
       private router: Router) { }
 
@@ -24,9 +28,15 @@ export class EventoListaComponent implements OnInit {
     this.service
       .getEventos()
       .subscribe(resposta => {
-        this.eventos = resposta;  
+        this.eventos = resposta;
       }
-      );
+    );
+    this.roles = this.dadosToken.getUser().roles;
+    console.log("tamanho papel token " + this.roles.length + "  " + this.roles);
+    if (this.roles.length > 1) {
+      this.isEspectador = false;
+    };
+    
   }
 
   preparaEndereco(){
@@ -43,7 +53,23 @@ export class EventoListaComponent implements OnInit {
   }
 
   vinculaEvento(id: number) {
-    this.router.navigate(['evento-espectador'])
+    console.log("id do evento" + id);
+    window.sessionStorage.setItem('ID_EVENTO', id.toString());
+    console.log("dados Token" + this.dadosToken.getUser().id);
+    if (this.dadosToken.getUser().id == undefined) {
+      this.router.navigate(['login']);
+    } else {
+      this.router.navigate(['evento-espectador'])
+    }
+  }
+
+  eventoForm() {
+    
+    if (this.roles.length > 1) {
+      this.router.navigate(['evento-form']);
+    } else {
+      this.router.navigate(['login']);
+    }
   }
 
 }
