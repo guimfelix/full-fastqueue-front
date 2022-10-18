@@ -1,5 +1,38 @@
-<div class="container">
-  <header class="jumbotron">
-    <h1>colocar relatorios aqui</h1>
-  </header>
+<div class="m-3 col-sm-12">
+  <div clas="container-fluid p-3 my-3 justify-content-center">
+    <header class="jumbotron ">
+      <h1>Gerar Relatórios</h1>
+      <div class="row justify-content-center align-content-center" (click)="openPDF()">
+        <button class="btn btn-secondary m-3 btn-lg col-sm-6 center-align">.pdf</button>
+      </div>
+      <div class="row justify-content-center align-content-center" (click)="openXLS()">
+        <button class="btn btn-secondary m-3 btn-lg col-sm-6 center-align">.xls</button>
+      </div>
+      <div class="row justify-content-center align-content-center" (click)="estatisticas()">
+        <button class="btn btn-secondary m-3 btn-lg col-sm-6 center-align">Estatísticas</button>
+      </div>
+    </header>
+  </div>
+  <div>
+    <table id="htmlData" class="table table-condensed table-hover">
+      <thead>
+          <tr>
+              <th>ID Evento</th>
+              <th>Nome </th>
+              <th>Local </th>
+              <th>Data </th>
+              <th>Hora Inicio</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let evento of eventos">
+              <td>{{ evento.id }}</td>
+              <td>{{ evento.nomeEvento }}</td>
+              <td>{{ evento.nomeLocalEvento }}</td>
+              <td>{{ evento.dataEvento }}</td>
+              <td>{{ evento.horarioEvento }}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -23,6 +23,7 @@ import { EspectadorFormComponent } from './espectador/espectador-form/espectador
 import { EspectadorListaComponent } from './espectador/espectador-lista/espectador-lista.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { EventoEspectadorComponent } from './espectador/evento-espectador/evento-espectador.component';
+import { EstatisticasComponent } from './estatisticas/estatisticas.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EventoEspectadorComponent } from './espectador/evento-espectador/evento
     EspectadorFormComponent,
     EspectadorListaComponent,
     ConfiguracoesComponent,
-    EventoEspectadorComponent
+    EventoEspectadorComponent,
+    EstatisticasComponent
 
   ],
   imports: [
