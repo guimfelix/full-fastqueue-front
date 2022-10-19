@@ -1,1 +1,25 @@
-<p>estatisticas works!</p>
+<div class="main-content">
+    <div class="container-fluid my-3 justify-content-center">
+        <header class="jumbotron ">
+            <div class="col-md-4 my-3 justify-content-center">
+                <lbd-chart
+                  [title]="'Estatísticas Eventos'"
+                  [chartClass]="'ct-perfect-fourth'"
+                  [chartType]="emailChartType"
+                  [chartData]="emailChartData" >
+                  
+                </lbd-chart>
+            </div>
+            <div class="col-md-8 ">
+                <lbd-chart
+                  [title]="'Acesso Usuários'"
+                  [chartType]="hoursChartType"
+                  [chartData]="hoursChartData"
+                  [chartOptions]="hoursChartOptions"
+                  [chartResponsive]="hoursChartResponsive" >
+                  
+                </lbd-chart>
+            </div>
+        </header>
+    </div>
+</div>

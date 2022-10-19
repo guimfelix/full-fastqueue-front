@@ -18,6 +18,7 @@ import { EventoFormComponent } from './evento/evento-form/evento-form.component'
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { EventoEspectadorComponent } from './espectador/evento-espectador/evento-espectador.component';
 import { EventoMapaComponent } from './evento/evento-mapa/evento-mapa.component';
+import { EstatisticasComponent } from './estatisticas/estatisticas.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'evento-espectador', component: EventoEspectadorComponent, canActivate: [AuthGuard] },
   { path: 'evento-produtor', component: EventoFormComponent, canActivate: [AuthGuard], data: { roles: ['PAPEL_ADMIN', 'PAPEL_PRODUTOR'] } },
   { path: 'evento-mapa', component: EventoMapaComponent },
+  { path: 'estatistica', component: EstatisticasComponent, canActivate: [AuthGuard], data: { roles: ['PAPEL_ADMIN']} },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

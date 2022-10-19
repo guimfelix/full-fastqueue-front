@@ -24,6 +24,7 @@ import { EspectadorListaComponent } from './espectador/espectador-lista/espectad
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { EventoEspectadorComponent } from './espectador/evento-espectador/evento-espectador.component';
 import { EstatisticasComponent } from './estatisticas/estatisticas.component';
+import { LbdModule } from './lbd/lbd.module';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { EstatisticasComponent } from './estatisticas/estatisticas.component';
     FormsModule,
     HttpClientModule,
     SocialLoginModule,
+    LbdModule
   ],
   providers: [authInterceptorProviders,
     {

@@ -12,6 +12,7 @@ import { EspectadorService } from '../services/espectador.service';
 import { Produtor } from '../produtor/produtor';
 import { Espectador } from '../espectador/espectador';
 import * as XLSX from 'xlsx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board-admin',
@@ -27,7 +28,8 @@ export class BoardAdminComponent implements OnInit {
   constructor(
     private eventoService: EventoService,
     private produtorService: ProdutorService,
-    private espectadorService: EspectadorService 
+    private espectadorService: EspectadorService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -82,6 +84,6 @@ export class BoardAdminComponent implements OnInit {
   }
 
   estatisticas(): void {
-    
+    this.router.navigate(['estatistica']);
   }
 }
