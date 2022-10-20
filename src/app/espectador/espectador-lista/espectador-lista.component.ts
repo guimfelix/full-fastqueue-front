@@ -12,7 +12,7 @@ import { Espectador } from '../espectador';
 export class EspectadorListaComponent implements OnInit {
 
   espectadores: Espectador[] = [];
-  enderecoSelecionado: Endereco;
+  enderecoSelecionado = false;
   mensagemSucesso: string;
   mensagemErro: string;
 
@@ -20,13 +20,22 @@ export class EspectadorListaComponent implements OnInit {
     private service: EspectadorService,
     private router: Router) { }
 
+  displayStyle = "none";
+  
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
+
   ngOnInit(): void {
     this.service
       .getEspectadores()
       .subscribe( resposta => this.espectadores = resposta );
   }
 
-  preparaEndereco(endereco: Endereco){
-    this.enderecoSelecionado = endereco;
+  preparaEndereco() {
+    this.enderecoSelecionado = true;
   }
 }

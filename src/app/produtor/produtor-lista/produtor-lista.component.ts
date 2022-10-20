@@ -20,6 +20,15 @@ export class ProdutorListaComponent implements OnInit {
     private service: ProdutorService,
     private router: Router) { }
 
+    displayStyle = "none";
+  
+    openPopup() {
+      this.displayStyle = "block";
+    }
+    closePopup() {
+      this.displayStyle = "none";
+    }
+  
   ngOnInit(): void {
     this.service
     .getProdutores()

@@ -32,6 +32,7 @@ export class AppComponent implements OnInit, OnDestroy, OnChanges {
       this.showEspectadorBoard = this.roles.includes('PAPEL_ESPECTADOR');
 
       this.username = user.username;
+  
     }
 
     this.eventBusSub = this.eventBusService.on('logout', () => {
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
+    window.location.reload();
   }
 
   ngOnDestroy(): void {

@@ -33,10 +33,29 @@
                         <td>{{ produtor.nome }}</td>
                         <td>{{ produtor.dataNascimento }}</td>
                         <td>
-                            <button class="btn btn-primary" (click)="preparaEndereco(produtor)" 
-                                    data-toggle="modal" data-target="#modalEndereco">
-                                <i class="fa fa-plus"></i>
+                            <button class="btn btn-primary" (click)="openPopup()">
+                                VER
                             </button>
+                            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Endereco</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Nome da rua: {{ produtor.endereco.nomeRua }}</p>
+                                            <p>Numero: {{ produtor.endereco.numero }}</p>
+                                            <p>Bairro: {{ produtor.endereco.bairro }}</p>
+                                            <p>Cidade: {{ produtor.endereco.cidade }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" (click)="closePopup()" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

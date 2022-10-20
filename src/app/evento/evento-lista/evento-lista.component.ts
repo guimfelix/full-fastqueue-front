@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Endereco } from 'src/app/endereco';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { EventoService } from '../../services/evento.service';
+import { EventoService } from '../../services/evento.service';Evento
 import { Evento } from '../evento';
 
 @Component({
@@ -59,7 +59,7 @@ export class EventoListaComponent implements OnInit {
     if (this.dadosToken.getUser().id == undefined) {
       this.router.navigate(['login']);
     } else {
-      this.router.navigate(['evento-espectador'])
+      this.router.navigate(['evento-vinculo']);
     }
   }
 
@@ -70,6 +70,10 @@ export class EventoListaComponent implements OnInit {
     } else {
       this.router.navigate(['login']);
     }
+  }
+
+  novoEvento() {
+    this.router.navigate(['evento-form']);
   }
 
 }

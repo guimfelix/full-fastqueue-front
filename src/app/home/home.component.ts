@@ -21,9 +21,21 @@ export class HomeComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     );
+    
   }
 
   irListaEvento() {
     this.router.navigate(['evento-lista']);
   }
+
+  irPesquisaEvento() {
+    //mudar rota
+    this.router.navigate(['evento-lista']);
+  }
+
+  irCriarEvento() {
+    //criar regra se for espectador criar signup
+    this.router.navigate(['evento-form']);
+  }
+  
 }
