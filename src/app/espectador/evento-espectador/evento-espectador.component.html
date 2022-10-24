@@ -1,1 +1,59 @@
-<p>evento-espectador works!</p>
+<h1 class="mt-4">Eventos</h1>
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item active">Lista eventos vinculados</li>
+</ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>ID Evento</th>
+                        <th>Nome </th>
+                        <th>Local </th>
+                        <th>Data </th>
+                        <th>Hora Inicio</th>
+                        <th>Endereco</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let evento of eventos">
+                        <td>{{ evento.id }}</td>
+                        <td>{{ evento.nomeEvento }}</td>
+                        <td>{{ evento.nomeLocalEvento }}</td>
+                        <td>{{ evento.dataEvento }}</td>
+                        <td>{{ evento.horarioEvento }}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="openPopup()">
+                                VER
+                            </button>
+                            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Endereco</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Nome da rua: {{ evento.endereco.nomeRua }}</p>
+                                            <p>Numero: {{ evento.endereco.numero }}</p>
+                                            <p>Bairro: {{ evento.endereco.bairro }}</p>
+                                            <p>Cidade: {{ evento.endereco.cidade }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" (click)="closePopup()" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

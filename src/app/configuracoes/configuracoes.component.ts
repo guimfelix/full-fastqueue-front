@@ -14,6 +14,7 @@ export class ConfiguracoesComponent implements OnInit {
   constructor(private router: Router, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
+    window.location.reload
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getUser().roles;
       console.log(this.roles);
