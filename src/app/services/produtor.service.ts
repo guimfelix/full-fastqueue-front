@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http'
 import { Produtor } from '../produtor/produtor';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/api/produtor/';
+const API_URL = 'https://fastqueue-back.herokuapp.com/api/produtor/';
 
 @Injectable({
   providedIn: 'root'

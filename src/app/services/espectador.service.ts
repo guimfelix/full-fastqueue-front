@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http'
 import { Espectador } from '../espectador/espectador';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/api/espectador/';
+const API_URL = 'https://fastqueue-back.herokuapp.com/api/espectador/';
 
 @Injectable({
   providedIn: 'root'
