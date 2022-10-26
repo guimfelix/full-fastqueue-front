@@ -43,10 +43,10 @@
                                             <h4 class="modal-title">Endereco</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Nome da rua: {{ evento.endereco.nomeRua }}</p>
-                                            <p>Numero: {{ evento.endereco.numero }}</p>
-                                            <p>Bairro: {{ evento.endereco.bairro }}</p>
-                                            <p>Cidade: {{ evento.endereco.cidade }}</p>
+                                            <p>Nome da rua: {{ espectador.endereco.nomeRua }}</p>
+                                            <p>Numero: {{ espectador.endereco.numero }}</p>
+                                            <p>Bairro: {{ espectador.endereco.bairro }}</p>
+                                            <p>Cidade: {{ espectador.endereco.cidade }}</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger" (click)="closePopup()" data-dismiss="modal">
@@ -63,24 +63,6 @@
         </div>
     </div>
 
-    <div id="modalEndereco" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Informações do Endereço</h4>
-                </div>
-
-                <div class="modal-body" *ngIf="enderecoSelecionado">
-                     {{ enderecoSelecionado }}
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-default" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

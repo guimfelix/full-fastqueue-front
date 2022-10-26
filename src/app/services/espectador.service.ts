@@ -5,6 +5,7 @@ import { Espectador } from '../espectador/espectador';
 import { Observable } from 'rxjs';
 
 const API_URL = 'https://fastqueue-back.herokuapp.com/api/espectador/';
+//const API_URL = 'https://localhost:8080/api/espectador/';
 
 @Injectable({
   providedIn: 'root'

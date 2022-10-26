@@ -70,42 +70,42 @@
                 <div class="form-group">
                     <label>Rua: </label>
                     <input type="text" class="form-control" 
-                           [(ngModel)]="endereco.nomeRua" name="nomeRua"   />
+                           [(ngModel)]="evento.endereco.nomeRua" name="nomeRua"   />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Numero: </label>
                     <input type="text" class="form-control" 
-                            [(ngModel)]="endereco.numero" name="numero"  />
+                            [(ngModel)]="evento.endereco.numero" name="numero"  />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Complemento: </label>
                     <input type="text" class="form-control" 
-                            [(ngModel)]="endereco.complemento" name="complemento"  />
+                            [(ngModel)]="evento.endereco.complemento" name="complemento"  />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Bairro: </label>
                     <input type="text" class="form-control" 
-                            [(ngModel)]="endereco.bairro" name="bairro"  />
+                            [(ngModel)]="evento.endereco.bairro" name="bairro"  />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Cidade: </label>
                     <input type="text" class="form-control" 
-                            [(ngModel)]="endereco.cidade" name="cidade"  />
+                            [(ngModel)]="evento.endereco.cidade" name="cidade"  />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Estado: </label>
                     <input type="text" class="form-control" 
-                            [(ngModel)]="endereco.estado" name="estado"  />
+                            [(ngModel)]="evento.endereco.estado" name="estado"  />
                 </div>
             </div>
         </div>
@@ -113,15 +113,13 @@
         <div class="row">
             <div class="col-md-3 p-3">
                 <button type="submit" class="btn btn-success" *ngIf="!evento.id">
-                    <i class="fa fa-save" ></i> Salvar
+                    Salvar
                 </button>
-
                 <button type="submit" class="btn btn-primary" *ngIf="evento.id">
-                    <i class="fa fa-sync-alt" ></i> Atualizar
+                    Atualizar
                 </button>
-                                                                <!--onSubmit não eh daqui-->
                 <button tye="button" class="btn btn-danger ml-1" (click)="voltarHome()">
-                    <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
+                    Voltar
                 </button>
             </div>
      

@@ -32,7 +32,6 @@ export class EventoListaComponent implements OnInit {
       }
     );
     this.roles = this.dadosToken.getUser().roles;
-    console.log("tamanho papel token " + this.roles.length + "  " + this.roles);
     if (this.roles.length > 1) {
       this.isEspectador = false;
     };
@@ -63,12 +62,10 @@ export class EventoListaComponent implements OnInit {
     }
   }
 
-  eventoForm() {
-    
+  eventoForm(id: number) {
+    window.sessionStorage.setItem('ID_EVENTO', id.toString());  
     if (this.roles.length > 1) {
       this.router.navigate(['evento-form']);
-    } else {
-      this.router.navigate(['login']);
     }
   }
 

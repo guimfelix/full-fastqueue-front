@@ -25,6 +25,7 @@ import { ConfiguracoesComponent } from './configuracoes/configuracoes.component'
 import { EventoEspectadorComponent } from './espectador/evento-espectador/evento-espectador.component';
 import { EstatisticasComponent } from './estatisticas/estatisticas.component';
 import { LbdModule } from './lbd/lbd.module';
+import { EventoPesquisaComponent } from './evento/evento-pesquisa/evento-pesquisa.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { LbdModule } from './lbd/lbd.module';
     EspectadorListaComponent,
     ConfiguracoesComponent,
     EventoEspectadorComponent,
-    EstatisticasComponent
+    EstatisticasComponent,
+    EventoPesquisaComponent
 
   ],
   imports: [

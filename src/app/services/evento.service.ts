@@ -33,4 +33,8 @@ export class EventoService {
     return this.http.delete<any>(`${API_URL}${evento.id}`);
   }
 
+  buscar(nomeEvento: string): Observable<any> {
+    return this.http.get<any>(`${API_URL}?nomeEvento=${nomeEvento}`);
+  }
+
 }

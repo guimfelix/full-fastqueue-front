@@ -1,11 +1,25 @@
-<h1 class="mt-4">Eventos</h1>
-<div class="row">
-    <button class="btn btn-warning btn-lg mt-2" (click)="novoEvento()" *ngIf="!isEspectador">
-        NOVO
-    </button>
-</div>
+<h1 class="mt-4">Buscador de Eventos</h1>
+<!-- criar caixa de pesquisa com botao de acionamento da busca. via formulario? -->
+<form #buscaForm="ngForm" (submit)="buscaEvento()">
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" [(ngModel)]="nomeEvento" 
+                   name="nomeEvento" class="form-control"
+                   id="inputNome" >
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 p-3">
+            <button type="submit" class="btn btn-primary">
+                Buscar
+            </button>
+        </div>
+    </div>
+</form>
+
 <ol class="breadcrumb mb-4 mt-4">
-    <li class="breadcrumb-item active">Lista eventos cadastrados</li>
+    <li class="breadcrumb-item active">Lista eventos encontrados na busca</li>
 </ol>
 <div class="container">
     <div class="row">
@@ -83,5 +97,3 @@
         </div>
     </div>
 </div>
-
-

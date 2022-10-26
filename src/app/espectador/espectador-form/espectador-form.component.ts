@@ -31,7 +31,6 @@ export class EspectadorFormComponent implements OnInit {
   ngOnInit(): void {
     //this.espectador.id = null;
     this.idLogado = window.sessionStorage.getItem('ID_CLIENTE');
-    console.log(this.idLogado);
     if (this.idLogado) {
       this.service
         .getEspectadorById(this.idLogado)
@@ -41,12 +40,12 @@ export class EspectadorFormComponent implements OnInit {
         )
     } else { 
       this.service
-        .getEspectadorById(this.dadosToken.getUser().id)
+        .getEspectadorByUserId(this.dadosToken.getUser().id)
         .subscribe(
           response => this.espectador = response,
           errorResponse => this.espectador = new Espectador()
       );
-      console.log(this.espectador)
+      window.sessionStorage.setItem('ID_CLIENTE', this.espectador.id.toString());
     }
   }
 

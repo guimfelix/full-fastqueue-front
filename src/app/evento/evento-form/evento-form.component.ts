@@ -17,7 +17,7 @@ export class EventoFormComponent implements OnInit {
   evento: Evento;
   success: boolean = false;
   errors: String[];
-  id: number;
+  id: any;
 
   constructor(
       private service: EventoService ,
@@ -29,9 +29,7 @@ export class EventoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let params : Observable<Params> = this.activatedRoute.params
-    params.subscribe( urlParams => {
-        this.id = urlParams['id'];
+    this.id = window.sessionStorage.getItem('ID_EVENTO');
         if(this.id){
           this.service
             .getEventoById(this.id)
@@ -40,8 +38,8 @@ export class EventoFormComponent implements OnInit {
               errorResponse => this.evento = new Evento()
             )
         }
-    })
-  }
+    window.sessionStorage.removeItem('ID_EVENTO');
+    }
 
   voltarHome(){
     this.router.navigate(['/home'])
@@ -69,5 +67,6 @@ export class EventoFormComponent implements OnInit {
             this.errors = errorResponse.error.errors;
           })
     }
+    this.router.navigate(['/home'])
   }
 }

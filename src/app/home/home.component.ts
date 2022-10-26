@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteConfigLoadEnd, Router } from '@angular/router';
+import { TokenStorageService } from '../services/token-storage.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserService } from '../services/user.service';
 export class HomeComponent implements OnInit {
   content?: string;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private tokenStorageService:TokenStorageService) { }
 
   ngOnInit(): void {
     this.userService.getPublicContent().subscribe(
@@ -29,13 +30,16 @@ export class HomeComponent implements OnInit {
   }
 
   irPesquisaEvento() {
-    //mudar rota
-    this.router.navigate(['evento-lista']);
+    this.router.navigate(['evento-pesquisa']);
   }
 
   irCriarEvento() {
-    //criar regra se for espectador criar signup
-    this.router.navigate(['evento-form']);
+    if (this.tokenStorageService.getUser().roles.length > 1) {
+      this.router.navigate(['evento-form']);
+    } else {
+      this.tokenStorageService.signOut();
+      this.router.navigate(['register']);
+    }
   }
   
 }

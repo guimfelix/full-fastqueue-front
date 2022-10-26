@@ -12,7 +12,7 @@ import { Produtor } from '../produtor';
 export class ProdutorListaComponent implements OnInit {
 
   produtores: Produtor[] = [];
-  enderecoSelecionado: Endereco;
+  enderecoSelecionado = false;
   mensagemSucesso: string;
   mensagemErro: string;
 
@@ -35,7 +35,7 @@ export class ProdutorListaComponent implements OnInit {
     .subscribe ( resposta => this.produtores = resposta );
   }
 
-  preparaEndereco(endereco: Endereco){
-    this.enderecoSelecionado = endereco;
+  preparaEndereco(){
+    this.enderecoSelecionado = true;
   }
 }

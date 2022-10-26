@@ -86,4 +86,16 @@ export class BoardAdminComponent implements OnInit {
   estatisticas(): void {
     this.router.navigate(['estatistica']);
   }
+
+  listarEspectador(): void {
+    this.router.navigate(['espectador-lista']);
+  }
+
+  listarProdutor(): void {
+    this.router.navigate(['produtor-lista']);
+  }
+
+  listarEvento(): void {
+    this.router.navigate(['evento-lista']);
+  }
 }

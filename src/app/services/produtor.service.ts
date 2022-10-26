@@ -29,6 +29,10 @@ export class ProdutorService {
     return this.http.get<any>(`${API_URL}${id}`);
   }
 
+  getProdutorByUserId(id: number) : Observable<Produtor> {
+    return this.http.get<any>(`${API_URL}usuario/${id}`);
+  }
+
   deletar(produtor: Produtor) : Observable<any> {
     return this.http.delete<any>(`${API_URL}${produtor.id}`);
   }
