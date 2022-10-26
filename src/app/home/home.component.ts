@@ -10,6 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class HomeComponent implements OnInit {
   content?: string;
+  qtdPapeis: any;
 
   constructor(private userService: UserService, private router: Router, private tokenStorageService:TokenStorageService) { }
 
@@ -34,7 +35,12 @@ export class HomeComponent implements OnInit {
   }
 
   irCriarEvento() {
-    if (this.tokenStorageService.getUser().roles.length > 1) {
+    if (this.tokenStorageService.getUser().roles == undefined)
+      this.qtdPapeis = 0;
+    else
+      this.qtdPapeis = this.tokenStorageService.getUser().roles.length;
+    
+    if (this.qtdPapeis > 1) {
       this.router.navigate(['evento-form']);
     } else {
       this.tokenStorageService.signOut();

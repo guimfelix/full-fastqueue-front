@@ -14,7 +14,7 @@ import { Espectador } from '../espectador';
 export class EspectadorFormComponent implements OnInit {
 
   endereco: Endereco;
-  espectador: Espectador
+  espectador: Espectador;
   success: boolean = false;
   errors: string[];
   idLogado: any = null;
@@ -54,6 +54,7 @@ export class EspectadorFormComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("Dados evento: " + this.espectador.id + this.espectador.nome)
     if(this.idLogado){
       this.service
         .atualizar(this.espectador)

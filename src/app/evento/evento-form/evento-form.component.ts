@@ -25,6 +25,7 @@ export class EventoFormComponent implements OnInit {
       private activatedRoute: ActivatedRoute)
   {
     this.evento = new Evento();
+    this.evento.id = 0;
     this.endereco = new Endereco();
   }
 
@@ -37,7 +38,10 @@ export class EventoFormComponent implements OnInit {
               response => this.evento = response ,
               errorResponse => this.evento = new Evento()
             )
+        } else {
+          this.evento.id = 0;
         }
+    console.log("Evento id = " + this.evento.id);
     window.sessionStorage.removeItem('ID_EVENTO');
     }
 

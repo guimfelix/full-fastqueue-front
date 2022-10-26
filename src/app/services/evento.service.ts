@@ -34,7 +34,7 @@ export class EventoService {
   }
 
   buscar(nomeEvento: string): Observable<any> {
-    return this.http.get<any>(`${API_URL}?nomeEvento=${nomeEvento}`);
+    return this.http.get<any>(`${API_URL}busca?nomeEvento=${nomeEvento}`);
   }
 
 }
