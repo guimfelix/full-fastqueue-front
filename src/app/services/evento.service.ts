@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 
 import { Evento } from '../evento/evento';
 import { Observable } from 'rxjs';
+import { Espectador } from '../espectador/espectador';
 
 const API_URL = 'https://fastqueue-back.herokuapp.com/api/eventos/';
 
@@ -35,6 +36,10 @@ export class EventoService {
 
   buscar(nomeEvento: string): Observable<any> {
     return this.http.get<any>(`${API_URL}busca?nomeEvento=${nomeEvento}`);
+  }
+
+  vincular( id: number, espectador: Espectador ) : Observable<any> {
+    return this.http.put<Espectador>(`${API_URL}${id}/vincular` , espectador);
   }
 
 }

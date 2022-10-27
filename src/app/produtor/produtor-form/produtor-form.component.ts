@@ -6,6 +6,7 @@ import { ProdutorService } from 'src/app/services/produtor.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Produtor } from '../produtor';
 import { ProdutorListaComponent } from '../produtor-lista/produtor-lista.component';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-produtor-form',
@@ -29,6 +30,7 @@ export class ProdutorFormComponent implements OnInit {
   { 
     this.produtor = new Produtor();
     this.endereco = new Endereco();
+    this.produtor.endereco = this.endereco;
   }
 
   ngOnInit(): void {

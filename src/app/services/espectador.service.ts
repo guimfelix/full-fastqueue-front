@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 
 import { Espectador } from '../espectador/espectador';
 import { Observable } from 'rxjs';
+import { Evento } from '../evento/evento';
 
 const API_URL = 'https://fastqueue-back.herokuapp.com/api/espectador/';
 //const API_URL = 'https://localhost:8080/api/espectador/';
@@ -34,10 +35,17 @@ export class EspectadorService {
     return this.http.get<any>(`${API_URL}usuario/${id}`);
   }
 
+  getEventosByEspectadorId(id: number) : Observable<Evento[]> {
+    return this.http.get<Evento[]>(`${API_URL}${id}/eventos`);
+  }
+  
   deletar(espectador: Espectador) : Observable<any> {
     return this.http.delete<any>(`${API_URL}${espectador.id}`);
   }
 
+  vincular( id: number, evento: Evento ) : Observable<any> {
+    return this.http.put<Evento>(`${API_URL}${id}/vincular` , evento);
+  }
 }
 
 

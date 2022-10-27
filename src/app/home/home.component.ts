@@ -35,10 +35,11 @@ export class HomeComponent implements OnInit {
   }
 
   irCriarEvento() {
-    if (this.tokenStorageService.getUser().roles == undefined)
+    if (this.tokenStorageService.getUser().roles == undefined) {
       this.qtdPapeis = 0;
-    else
+    } else {
       this.qtdPapeis = this.tokenStorageService.getUser().roles.length;
+    }
     
     if (this.qtdPapeis > 1) {
       this.router.navigate(['evento-form']);

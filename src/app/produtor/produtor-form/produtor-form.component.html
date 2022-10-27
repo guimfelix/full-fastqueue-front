@@ -91,16 +91,16 @@
 
         <div class="row m-3">
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success btn-lg ml-1" >
-                    <i class="fa fa-save" ></i> Salvar
+                <button type="submit" class="btn btn-success btn-lg ml-1" *ngIf="!produtor.id">
+                    Salvar
                 </button>
 
                 <button type="submit" class="btn btn-primary btn-lg ml-1" *ngIf="produtor.id">
-                    <i class="fa fa-sync-alt" ></i> Atualizar
+                    Atualizar
                 </button>
                                                                 <!--onSubmit não eh daqui-->
                 <button tye="button" class="btn btn-danger btn-lg ml-1" (click)="voltarHome()">
-                    <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
+                    Voltar
                 </button>
             </div>
      

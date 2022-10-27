@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 
 import { Produtor } from '../produtor/produtor';
 import { Observable } from 'rxjs';
+import { Evento } from '../evento/evento';
 
 const API_URL = 'https://fastqueue-back.herokuapp.com/api/produtor/';
 
@@ -31,6 +32,10 @@ export class ProdutorService {
 
   getProdutorByUserId(id: number) : Observable<Produtor> {
     return this.http.get<any>(`${API_URL}usuario/${id}`);
+  }
+
+  getEventosByProdutorId(id: number) : Observable<Evento[]> {
+    return this.http.get<Evento[]>(`${API_URL}${id}/eventos`);
   }
 
   deletar(produtor: Produtor) : Observable<any> {

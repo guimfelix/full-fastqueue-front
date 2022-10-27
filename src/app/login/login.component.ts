@@ -3,6 +3,8 @@ import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { GoogleLoginProvider, SocialAuthService } from "angularx-social-login";
 import { Router } from '@angular/router';
+import { EspectadorService } from '../services/espectador.service';
+import { ProdutorService } from '../services/produtor.service';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +25,13 @@ export class LoginComponent implements OnInit {
   
 
   constructor(
+    private service1: EspectadorService,
+    private service2: ProdutorService,
     private router: Router,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private authServiceSocial: SocialAuthService,
+
   ) { }
 
   ngOnInit(): void {
@@ -49,15 +54,24 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.isCadastrado = this.tokenStorage.getUser().isCadastrado;
+
         if (!this.isCadastrado && this.roles.length==2) {
           this.router.navigate(['produtor-form']);
-        } else if (this.isCadastrado && this.roles.length==2) {
+        } else if (this.isCadastrado && this.roles.length == 2) {
+          this.service2.getProdutorByUserId(this.tokenStorage.getUser().id)
+            .subscribe(resposta => {
+              window.sessionStorage.setItem('ID_CLIENTE', resposta.id.toString());
+            });
           this.router.navigate(['home']);
         } else if (this.roles.includes('PAPEL_ADMIN', 0)) {
           this.router.navigate(['admin']);
         } else if (!this.isCadastrado && this.roles.length==1) {
           this.router.navigate(['espectador-form']);
         } else {
+          this.service1.getEspectadorByUserId(this.tokenStorage.getUser().id)
+            .subscribe(resposta => {
+              window.sessionStorage.setItem('ID_CLIENTE', resposta.id.toString());
+            });
           this.router.navigate(['home']);
         }
         

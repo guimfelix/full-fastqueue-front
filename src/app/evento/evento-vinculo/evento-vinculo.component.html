@@ -1,24 +1,28 @@
 <div class="m-3 col-sm-12">
     <div clas="container-fluid p-3 ">
-      <header class="jumbotron">
-        <div class="row justify-content-center align-content-center">
+      <header class="jumbotron ">
+        
+        <div class="justify-content-center align-content-center">
           <h3>Dados do Evento</h3>
-          
+          {{evento.nomeEvento}} - - - - DIA: {{evento.dataEvento}} - - - - HORA: {{evento.horarioEvento}}
+          <br/>
+          EM: {{evento.nomeLocalEvento}}
         </div>
       </header>
     </div>
     <div class="container-fluid p-3 ">
       <header class="jumbotron">
-        <div class="row justify-content-center align-content-center">
+        <div class="justify-content-center align-content-center">
           <h2>Dados do Espectador</h2>
+          {{espectador.nome}} - - - - Data de Nascimento: {{espectador.dataNascimento}}
         </div>
       </header>
     </div>
     <div class="container-fluid p-3 ">
         <header class="jumbotron">
-          <div class="row justify-content-center align-content-center">
+          <div class="justify-content-center align-content-center">
             <h2>Preferências</h2>
-            Checkbox
+            Insira preferência do horário de chegada: <input>
           </div>
         </header>
     </div>

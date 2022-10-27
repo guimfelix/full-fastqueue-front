@@ -2,8 +2,8 @@
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">{{ espectador.id ? 'Edição de espectador' : 'Cadastro de novo espectador' }}</li>
 </ol>
-<div class="container">
-    <form #espectadorForm="ngForm" (ngSubmit)="onSubmit()" >
+<div class="userform">
+    <form #espectadorForm="ngForm" (ngSubmit)="onSubmit()" name="espectador">
 
         <div class="row">
             <div class="col-md-12">
@@ -91,7 +91,7 @@
 
         <div class="row m-3">
             <div class="col-md-6 p-3">
-                <button type="submit" class="btn btn-success btn-lg ml-1" >
+                <button type="submit" class="btn btn-success btn-lg ml-1" *ngIf="!espectador.id">
                     Salvar
                 </button>
 

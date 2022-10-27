@@ -4,6 +4,8 @@ import { Endereco } from 'src/app/endereco';
 import { Evento } from 'src/app/evento/evento';
 import { EspectadorService } from 'src/app/services/espectador.service';
 import { EventoService } from 'src/app/services/evento.service';
+import { ProdutorService } from 'src/app/services/produtor.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Espectador } from '../espectador';
 
 @Component({
@@ -23,16 +25,22 @@ export class EventoEspectadorComponent implements OnInit {
   constructor(
     private service: EspectadorService,
     private service2: EventoService,
+    private service3: ProdutorService,
+    private token: TokenStorageService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.idLogado = window.sessionStorage.getItem('ID_CLIENTE');
-    this.service
-      .getEspectadorById(this.idLogado)
-      .subscribe(resposta => this.espectador = resposta);
-    
-    this.service2.getEventos()
-      .subscribe(resposta => this.eventos = resposta);
+    if (this.token.getUser().roles.length > 1) {
+      this.service3
+        .getEventosByProdutorId(this.idLogado)
+        .subscribe(resposta => this.eventos = resposta);
+    } else {
+      this.service
+        .getEventosByEspectadorId(this.idLogado)
+        .subscribe(resposta => this.eventos = resposta);
+    }
+
   }
 
   preparaEndereco(endereco: Endereco){

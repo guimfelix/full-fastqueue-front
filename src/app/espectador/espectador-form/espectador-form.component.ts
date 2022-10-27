@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { EspectadorService } from 'src/app/services/espectador.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Espectador } from '../espectador';
+import { NgForm } from '@angular/forms';
+import { Register } from 'src/app/register/register';
 
 @Component({
   selector: 'app-espectador-form',
@@ -13,6 +15,7 @@ import { Espectador } from '../espectador';
 })
 export class EspectadorFormComponent implements OnInit {
 
+  registro: Register;
   endereco: Endereco;
   espectador: Espectador;
   success: boolean = false;
@@ -26,10 +29,13 @@ export class EspectadorFormComponent implements OnInit {
   { 
     this.espectador = new Espectador();
     this.endereco = new Endereco();
+    this.registro = new Register();
+    this.espectador.endereco = this.endereco;
+    this.espectador.registro = this.registro;
   }
 
   ngOnInit(): void {
-    //this.espectador.id = null;
+    this.espectador.id = null;
     this.idLogado = window.sessionStorage.getItem('ID_CLIENTE');
     if (this.idLogado) {
       this.service
@@ -39,13 +45,16 @@ export class EspectadorFormComponent implements OnInit {
           errorResponse => this.espectador = new Espectador()
         )
     } else { 
-      this.service
-        .getEspectadorByUserId(this.dadosToken.getUser().id)
-        .subscribe(
-          response => this.espectador = response,
-          errorResponse => this.espectador = new Espectador()
-      );
-      window.sessionStorage.setItem('ID_CLIENTE', this.espectador.id.toString());
+      if (this.dadosToken.getUser().isCadastrado) {
+        this.service
+          .getEspectadorByUserId(this.dadosToken.getUser().id)
+          .subscribe(
+            response => this.espectador = response,
+            errorResponse => this.espectador = new Espectador()
+        );
+        window.sessionStorage.setItem('ID_CLIENTE', this.espectador.id.toString());
+      }
+      
     }
   }
 
@@ -54,8 +63,10 @@ export class EspectadorFormComponent implements OnInit {
   }
 
   onSubmit() {
+
     console.log("Dados evento: " + this.espectador.id + this.espectador.nome)
-    if(this.idLogado){
+    if (this.idLogado) {
+      console.log("qq" + this.espectador);
       this.service
         .atualizar(this.espectador)
         .subscribe(response => {
@@ -66,6 +77,8 @@ export class EspectadorFormComponent implements OnInit {
         })
 
     } else {
+      this.espectador.registro.id = this.dadosToken.getUser().id;
+      console.log("gg" + this.espectador.registro.id);
       this.service
         .salvar(this.espectador)
           .subscribe( response => {
