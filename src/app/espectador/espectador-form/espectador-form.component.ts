@@ -66,7 +66,6 @@ export class EspectadorFormComponent implements OnInit {
 
     console.log("Dados evento: " + this.espectador.id + this.espectador.nome)
     if (this.idLogado) {
-      console.log("qq" + this.espectador);
       this.service
         .atualizar(this.espectador)
         .subscribe(response => {
@@ -78,7 +77,7 @@ export class EspectadorFormComponent implements OnInit {
 
     } else {
       this.espectador.registro.id = this.dadosToken.getUser().id;
-      console.log("gg" + this.espectador.registro.id);
+      this.espectador.registro.isCadastrado = true;
       this.service
         .salvar(this.espectador)
           .subscribe( response => {

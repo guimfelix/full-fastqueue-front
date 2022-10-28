@@ -4,4 +4,5 @@ export class Register{
     email: string;
     password: string;
     isCadastrado: boolean;
+    roles: string[];
 }
