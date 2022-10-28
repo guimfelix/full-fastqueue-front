@@ -21,6 +21,8 @@ export class EventoEspectadorComponent implements OnInit {
   mensagemSucesso: string;
   mensagemErro: string;
   idLogado: any;
+  isEspectador = true;
+  roles: string[] = [];
 
   constructor(
     private service: EspectadorService,
@@ -40,11 +42,36 @@ export class EventoEspectadorComponent implements OnInit {
         .getEventosByEspectadorId(this.idLogado)
         .subscribe(resposta => this.eventos = resposta);
     }
+    this.roles = this.token.getUser().roles;
+    if (this.roles.length > 1) {
+      this.isEspectador = false;
+    };
 
   }
 
   preparaEndereco(endereco: Endereco){
     this.enderecoSelecionado = endereco;
+  }
+
+  novoEvento() {
+    window.sessionStorage.removeItem('ID_EVENTO');
+    this.router.navigate(['evento-form']);
+  }
+
+  eventoForm(id: number) {
+    window.sessionStorage.setItem('ID_EVENTO', id.toString());  
+    if (this.roles.length > 1) {
+      this.router.navigate(['evento-form']);
+    }
+  }
+
+  displayStyle = "none";
+  
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
   }
 }
 

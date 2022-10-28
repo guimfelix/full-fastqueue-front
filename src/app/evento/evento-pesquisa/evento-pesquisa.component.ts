@@ -40,4 +40,24 @@ export class EventoPesquisaComponent implements OnInit {
       });
   }
 
+  vinculaEvento(id: number) {
+    console.log("id do evento" + id);
+    window.sessionStorage.setItem('ID_EVENTO', id.toString());
+    console.log("dados Token" + this.dadosToken.getUser().id);
+    if (this.dadosToken.getUser().id == undefined) {
+      this.router.navigate(['login']);
+    } else {
+      this.router.navigate(['evento-vinculo']);
+    }
+  }
+
+  displayStyle = "none";
+  
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
+
 }

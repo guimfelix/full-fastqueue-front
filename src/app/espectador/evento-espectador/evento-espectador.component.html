@@ -1,4 +1,9 @@
-<h1 class="mt-4">Eventos</h1>
+<h1 class="mt-4">Meus Eventos</h1>
+<div class="row">
+    <button class="btn btn-warning btn-lg mt-2" (click)="novoEvento()" *ngIf="!isEspectador">
+        NOVO
+    </button>
+</div>
 <ol class="breadcrumb mb-4 mt-4">
     <li class="breadcrumb-item active">Lista eventos vinculados</li>
 </ol>
@@ -14,6 +19,7 @@
                         <th>Data </th>
                         <th>Hora Inicio</th>
                         <th>Endereco</th>
+                        <th>Alterar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +52,13 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <button class="btn btn-danger" (click)="eventoForm(evento.id)" *ngIf="!isEspectador">
+                                    edit
+                                </button>
                             </div>
                         </td>
                     </tr>
